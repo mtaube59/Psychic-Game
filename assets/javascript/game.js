@@ -7,13 +7,20 @@ var remaingLetters = 10;
 
 // // var winsText = document.getElementById("wins-text");
 // var lossesText = document.getElementById("losses-text");
-// var guessesLeftText = document.getElementById("left-text");
-// var userGuessesText = document.getElementById("guesses-text");
-
 
 // Computer chooses a random letter from the array computerChoices
 var computerLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
 console.log (computerLetter)
+function reset(){
+    var guessesLeftText = document.getElementById("left-text");
+    var userGuessesText = document.getElementById("guesses-text");
+    lettersTried = [];
+    remaingLetters = 10;
+    computerLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+    console.log(computerLetter)
+    guessesLeftText.textContent = "Guesses Left: " + remaingLetters;
+    userGuessesText.textContent = "Your Guesses So Far: " + lettersTried;
+}
 
 
 document.onkeyup = function(event){
@@ -50,6 +57,7 @@ document.onkeyup = function(event){
                     wins++
                     console.log("wins: " + wins)
                     winsText.textContent = "Wins: " + wins;
+                    reset();
                 
 
                 // push letters into array letters tried
@@ -60,7 +68,9 @@ document.onkeyup = function(event){
                 losses++;
                 console.log("losses: " + losses);
                 lossesText.textContent = "Losses: "  + losses;
+                reset()
             }
+
     }
 
 }
